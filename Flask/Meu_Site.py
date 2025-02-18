@@ -1,0 +1,54 @@
+from flask import Flask, render_template, request, redirect
+import sqlite3
+app = Flask(__name__)
+
+# criar a 1 pagina
+
+# route (Funcao exibida na pagina)
+
+# funcao
+
+@app.route("/")
+def homepage():
+    return render_template("homepage.html")
+
+@app.route("/Pessoas")
+def pessoas():
+    return render_template("Pessoas.html")
+
+@app.route("/Usuarios/<nome_usuario>")
+def usuarios(nome_usuario):
+    return render_template("Usuarios.html", nome_usuario=nome_usuario)
+
+
+#conectando meu banco
+def get_data():
+    conn = sqlite3.connect("primeiro_banco.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM pessoas")
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+@app.route("/Banco")
+def Banco():
+    pessoas = get_data()
+    return render_template("Banco.html", pessoas=pessoas)
+
+@app.route("/Add", methods=["POST"])
+def add():
+    nome = request.form["nome"]
+    idade = request.form["idade"]
+    objeto = request.form["objeto"]
+
+    conn = sqlite3.connect("primeiro_banco.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO pessoas (nome, idade, objeto) VALUES (?, ?, ?)", (nome, idade, objeto))
+    conn.commit()
+    conn.close()
+
+    return redirect("/Banco")  # Redireciona para a página inicial
+# colocar o site no ar
+if __name__ == "__main__":
+    app.run(debug=True)
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco</title>
+</head>
+<body>
+    <h2>Banco de Dados</h2>
+    <table border="3">
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Objeto</th>
+        </tr>
+        {% for pessoas in pessoas %}
+        <tr>
+            <td>{{ pessoas[0] }}</td>
+            <td>{{ pessoas[1] }}</td>
+            <td>{{ pessoas[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p></p>
+    <form action="/Add" method="POST">
+        <input type="text" name="nome" id = "nome" placeholder = "Nome" required>
+        <input type="number" name="idade" id = "idade" placeholder="Idade" required>
+        <input type="text" name="objeto" id = "objeto" placeholder="objeto" required>
+        <button type="submit">Adicionar</button>
+    </form>
+</body>
+</html>
