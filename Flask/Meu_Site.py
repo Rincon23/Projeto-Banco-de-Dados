@@ -30,10 +30,15 @@ def get_data():
     conn.close()
     return data
 
+#Criando a pagina Banco
+
 @app.route("/Banco")
 def Banco():
     pessoas = get_data()
     return render_template("Banco.html", pessoas=pessoas)
+
+
+#Adicionando ao Banco
 
 @app.route("/Add", methods=["POST"])
 def add():
@@ -48,6 +53,25 @@ def add():
     conn.close()
 
     return redirect("/Banco")  # Redireciona para a página inicial
+
+#Deletando do Banco
+
+@app.route("/Delete", methods=["POST"])
+def delete():
+    try:
+        nome = request.form["nome"]
+
+        banco = sqlite3.connect('primeiro_banco.db')
+
+        cursor = banco.cursor()
+        cursor.execute("DELETE from pessoas WHERE nome = ?", (nome,))
+        banco.commit() 
+        banco.close()
+        print("Os dados foram removidos")
+    except sqlite3.Error as erro:
+        print("Erro ao excluir: ", erro)
+    return redirect("/Banco")  # Redireciona para a página inicial
+
 # colocar o site no ar
 if __name__ == "__main__":
     app.run(debug=True)

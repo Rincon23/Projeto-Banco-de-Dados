@@ -23,10 +23,15 @@
     </table>
     <p></p>
     <form action="/Add" method="POST">
-        <input type="text" name="nome" id = "nome" placeholder = "Nome" required>
-        <input type="number" name="idade" id = "idade" placeholder="Idade" required>
-        <input type="text" name="objeto" id = "objeto" placeholder="objeto" required>
+        <input type="text" name="nome" placeholder = "Nome" required>
+        <input type="number" name="idade" placeholder="Idade" required>
+        <input type="text" name="objeto" placeholder="objeto" required>
         <button type="submit">Adicionar</button>
+    </form>
+    <p></p>
+    <form action="/Delete" method="POST">
+        <input type="text" name="nome" placeholder = "Nome" required>
+        <button type="submit">Remover</button>
     </form>
 </body>
 </html>
