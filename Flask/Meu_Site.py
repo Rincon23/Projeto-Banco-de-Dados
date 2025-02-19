@@ -1,6 +1,24 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 import webview
+
+import sqlite3
+
+banco = sqlite3.connect('primeiro_banco.db')
+cursor = banco.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS pessoas (
+    nome TEXT,
+    idade INTEGER,
+    objeto TEXT
+)
+""")
+
+banco.commit()
+banco.close()
+
+
 app = Flask(__name__)
 
 

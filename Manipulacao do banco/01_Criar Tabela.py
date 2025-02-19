@@ -1,9 +1,19 @@
 import sqlite3
 
-#Conectando no banco
+# Conectando ao banco
 banco = sqlite3.connect('primeiro_banco.db')
-
 cursor = banco.cursor()
 
-#Criar tabela (Apenas 1 vez)
-cursor.execute("CREATE TABLE pessoas (nome text,idade integer, objeto text)")
+# Criar a tabela apenas se ela não existir
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS pessoas (
+    nome TEXT,
+    idade INTEGER,
+    objeto TEXT
+)
+""")
+
+# Confirmar e fechar conexão
+banco.commit()
+banco.close()
+
