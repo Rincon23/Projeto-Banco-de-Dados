@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+import webview
 app = Flask(__name__)
 
-# criar a 1 pagina
 
-# route (Funcao exibida na pagina)
 
-# funcao
+windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
+
 
 @app.route("/")
 def homepage():
@@ -74,5 +74,6 @@ def delete():
 
 # colocar o site no ar
 if __name__ == "__main__":
-    app.run(debug=True)
+    webview.start()
+    #app.run(debug=True)
 
