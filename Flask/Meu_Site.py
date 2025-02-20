@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 
 
-windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
+#windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
 
 
 @app.route("/")
@@ -92,6 +92,6 @@ def delete():
 
 # colocar o site no ar
 if __name__ == "__main__":
-    webview.start()
-    #app.run(debug=True)
+    #webview.start()
+    app.run(debug=True)
 
