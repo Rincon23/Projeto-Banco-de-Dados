@@ -1,30 +1,17 @@
 from flask import Flask, render_template, request, redirect
 from Senha import Confirmacao
+from Banco import criartabela, add, delete
 import sqlite3
 import webview
 
-banco = sqlite3.connect('primeiro_banco.db')
-cursor = banco.cursor()
-
-#Criar tabela se ela não existir
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS pessoas (
-    nome TEXT,
-    idade INTEGER,
-    objeto TEXT
-)
-""")
-
-banco.commit()
-banco.close()
-
-
 app = Flask(__name__)
+
+criartabela() #Criar tabela se ela não existir
 
 #Configurar janela do pyview
 windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
 
-
+#Acessando templates
 @app.route("/")
 def homepage():
     return render_template("homepage.html")
@@ -56,38 +43,17 @@ def Banco():
 
 
 #Adicionando ao Banco
-
 @app.route("/Add", methods=["POST"])
-def add():
-    nome = request.form["nome"]
-    idade = request.form["idade"]
-    objeto = request.form["objeto"]
-
-    conn = sqlite3.connect("primeiro_banco.db")
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO pessoas (nome, idade, objeto) VALUES (?, ?, ?)", (nome, idade, objeto))
-    conn.commit()
-    conn.close()
-
-    return redirect("/Banco")  # Redireciona para a página inicial
+def Adicionar():
+    return add()
 
 #Deletando do Banco
 
 @app.route("/Delete", methods=["POST"])
-def delete():
-    try:
-        nome = request.form["nome"]
+def Deletando():
+    return delete()
 
-        banco = sqlite3.connect('primeiro_banco.db')
-
-        cursor = banco.cursor()
-        cursor.execute("DELETE from pessoas WHERE nome = ?", (nome,))
-        banco.commit() 
-        banco.close()
-        print("Os dados foram removidos")
-    except sqlite3.Error as erro:
-        print("Erro ao excluir: ", erro)
-    return redirect("/Banco")  # Redireciona para a página inicial
+#Confirmando a senha
 
 @app.route("/Confirmacao", methods=["POST"])
 def confirmar_usuario():
@@ -97,6 +63,6 @@ def confirmar_usuario():
 # colocar o site no ar
 
 if __name__ == "__main__":
-    webview.start()
-    #app.run(debug=True)
+    #webview.start()
+    app.run(debug=True)
     
