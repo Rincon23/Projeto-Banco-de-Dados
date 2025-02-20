@@ -18,6 +18,16 @@ def criartabela():
     banco.commit()
     banco.close()
 
+#Conectando ao Banco
+def get_data():
+    conn = sqlite3.connect("primeiro_banco.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM pessoas")
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+
 #Adicionando dados da tabela
 @app.route("/Add", methods=["POST"])
 def add():
