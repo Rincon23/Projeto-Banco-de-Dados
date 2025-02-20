@@ -7,6 +7,3 @@ Para a interface gráfica utilizei PyWebView, Flask e HTML.
 E para compila-los em um arquivo executavel utilizei o PyInstaller.
 
 O objetivo é fazer um programa de estoque no futuro e vender para empresas menores onde não ocupam tanto espaço a ponto de precisar de um SQLServer
-
-# Como compilar:
-Baixando os arquivos e abrindo o arquivo .exe presente na pasta principal.
