@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
+from Senha import Confirmacao
 import sqlite3
 import webview
-import sqlite3
 
 banco = sqlite3.connect('primeiro_banco.db')
 cursor = banco.cursor()
@@ -89,8 +89,14 @@ def delete():
         print("Erro ao excluir: ", erro)
     return redirect("/Banco")  # Redireciona para a página inicial
 
+@app.route("/Confirmacao", methods=["POST"])
+def confirmar_usuario():
+    return Confirmacao()
+
+
 # colocar o site no ar
+
 if __name__ == "__main__":
     webview.start()
     #app.run(debug=True)
-
+    
