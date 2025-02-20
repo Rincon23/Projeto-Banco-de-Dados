@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template
 from Senha import Confirmacao
 from Banco import criartabela, add, delete, get_data
-import sqlite3
 import webview
 
 app = Flask(__name__)
