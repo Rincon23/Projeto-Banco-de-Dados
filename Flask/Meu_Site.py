@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 import webview
-
 import sqlite3
 
 banco = sqlite3.connect('primeiro_banco.db')
 cursor = banco.cursor()
 
+#Criar tabela se ela não existir
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS pessoas (
     nome TEXT,
@@ -21,8 +21,7 @@ banco.close()
 
 app = Flask(__name__)
 
-
-
+#Configurar janela do pyview
 windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
 
 
