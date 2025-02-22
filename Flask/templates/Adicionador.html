@@ -35,5 +35,32 @@
         <button type="submit">Adicionar</button>
     </form>
 
+    <h1>Funcionario</h1>
+    <table border="3">
+        <tr>
+            <th>Id</th>
+            <th>Id Obra</th>
+            <th>Nome</th>
+            <th>Salario</th>
+        </tr>
+        {% for Funcionario in Funcionario %}</p>
+        <tr>
+            <td>{{ Funcionario[0] }}</td>
+            <td align="center">{{ Funcionario[1] }}</td>
+            <td>{{ Funcionario[2] }}</td>
+            <td>{{ Funcionario[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p></p>
+
+    <form action="/AddFuncionario" method="POST">
+        <input type="number" name="IdObra" placeholder = "Id da obra" required>
+        <input type="text" name="Nome" placeholder = "Nome" required>
+        <input type="number" name="Salario" placeholder="Salário" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
 </body>
 </html>

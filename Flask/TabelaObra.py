@@ -3,8 +3,8 @@ import sqlite3
 
 app = Flask(__name__)
 
-def CriartabelaObra():
-    banco = sqlite3.connect('TabelaObra.db')
+def CriarTabelaObra():
+    banco = sqlite3.connect('BancoDeDados.db')
     cursor = banco.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Obra (
@@ -19,7 +19,7 @@ def CriartabelaObra():
     banco.close()
 
 def BancoObra():
-    conn = sqlite3.connect("TabelaObra.db")
+    conn = sqlite3.connect("BancoDeDados.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Obra")
     BancoObra = cursor.fetchall()
@@ -32,7 +32,7 @@ def AddObra():
     DataInicio = request.form["DataInício"]
     DataTermino = request.form["DataTermino"]
 
-    conn = sqlite3.connect("TabelaObra.db")
+    conn = sqlite3.connect("BancoDeDados.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO Obra (Nome, DataInicio, DataTermino) VALUES (?, ?, ?)", (Nome, DataInicio, DataTermino))
     conn.commit()
