@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar</title>
+</head>
+<body>
+    
+    <h1>Obra</h1>
+    <table border="3">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Data Início</th>
+            <th>Data Término</th>
+        </tr>
+        {% for Obra in Obra %}</p>
+        <tr>
+            <td>{{ Obra[0] }}</td>
+            <td>{{ Obra[1] }}</td>
+            <td>{{ Obra[2] }}</td>
+            <td>{{ Obra[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p></p>
+
+    <!--Formulario para incerção de dados-->
+    <form action="/AddObra" method="POST">
+        <input type="text" name="Nome" placeholder = "Nome" required>
+        <input type="text" name="DataInício" placeholder="Data do Início" required>
+        <input type="text" name="DataTermino" placeholder="Data do Término" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+</body>
+</html>

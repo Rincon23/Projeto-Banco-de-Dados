@@ -1,12 +1,14 @@
 from flask import Flask, render_template
 from Senha import Confirmacao
 from Banco import criartabela, add, delete, get_data
+from TabelaObra import CriartabelaObra, BancoObra, AddObra
 import webview
 
 app = Flask(__name__)
 
 #Criar tabela se ela não existir
 criartabela() 
+CriartabelaObra()
 
 #Configurar janela do pyview
 windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
@@ -29,6 +31,11 @@ def Banco():
     pessoas = get_data()
     return render_template("Banco.html", pessoas=pessoas)
 
+@app.route("/Adicionador")
+def BancoObraOO():
+    Obra = BancoObra()
+    return render_template("Adicionador.html", Obra=Obra)
+
 #Acessando funções
 
 @app.route("/Add", methods=["POST"])
@@ -42,6 +49,10 @@ def Deletando():
 @app.route("/Confirmacao", methods=["POST"])
 def confirmar_usuario():
     return Confirmacao()
+
+@app.route("/AddObra", methods=["POST"])
+def OOAddObra():
+    return AddObra()
 
 # colocar o site no ar
 
