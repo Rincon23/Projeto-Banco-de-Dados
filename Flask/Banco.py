@@ -18,7 +18,7 @@ def criartabela():
     banco.commit()
     banco.close()
 
-#Conectando ao Banco
+#Selecionando todas as pessoas
 def get_data():
     conn = sqlite3.connect("primeiro_banco.db")
     cursor = conn.cursor()
