@@ -52,7 +52,7 @@ def DeleteFuncionario():
         banco = sqlite3.connect('BancoDeDados.db')
         cursor = banco.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
-        cursor.execute("DELETE from Funcionario WHERE Nome = ?", (Nome,"""<-- Precisa dessa virgula"""))
+        cursor.execute("DELETE from Funcionario WHERE Nome = ?", (Nome,))
 
         banco.commit() 
         banco.close()
