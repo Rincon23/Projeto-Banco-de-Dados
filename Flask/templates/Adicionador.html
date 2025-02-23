@@ -35,6 +35,21 @@
         <button type="submit">Adicionar</button>
     </form>
 
+    <p></p>
+
+    <form action="/DeleteObra" method="POST">
+        <input type="text" name="Nome" placeholder="Nome da Obra" list="lista_obras" required>
+        <datalist id="lista_obras">
+            {% for Obra in Obra %}
+            <option value="{{ Obra[1] }}">
+            {% endfor %}
+        </datalist>
+        <button type="submit">Remover</button>
+    </form>
+    
+
+    <p></p>
+
     <h1>Funcionario</h1>
     <table border="3">
         <tr>
@@ -60,6 +75,18 @@
         <input type="text" name="Nome" placeholder = "Nome" required>
         <input type="number" name="Salario" placeholder="Salário" required>
         <button type="submit">Adicionar</button>
+    </form>
+
+    <p></p>
+
+    <form action="/DeleteFuncionario" method="POST">
+        <input type="text" name="Nome" placeholder="Nome do Funcionario" list="lista_Funcionario" required>
+        <datalist id="lista_Funcionario">
+            {% for Funcionario in Funcionario %}
+            <option value="{{ Funcionario[2] }}">
+            {% endfor %}
+        </datalist>
+        <button type="submit">Remover</button>
     </form>
 
 </body>

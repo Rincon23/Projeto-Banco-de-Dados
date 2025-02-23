@@ -1,8 +1,8 @@
 from flask import Flask, render_template
 from Senha import Confirmacao
 from Banco import criartabela, add, delete, get_data
-from TabelaObra import CriarTabelaObra, BancoObra, AddObra
-from TabelaFuncionario import CriarTabelaFuncionario, BancoFuncionario, AddFuncionario
+from TabelaObra import CriarTabelaObra, BancoObra, AddObra, DeleteObra
+from TabelaFuncionario import CriarTabelaFuncionario, BancoFuncionario, AddFuncionario, DeleteFuncionario
 import webview
 
 app = Flask(__name__)
@@ -58,9 +58,19 @@ def confirmar_usuario():
 def OOAddObra():
     return AddObra()
 
+@app.route("/DeleteObra", methods=["POST"])
+def OODeleteObra():
+    return DeleteObra()
+
 @app.route("/AddFuncionario", methods=["POST"])
 def OOAddFuncionario():
     return AddFuncionario()
+
+@app.route("/DeleteFuncionario", methods=["POST"])
+def OODeleteFuncionario():
+    return DeleteFuncionario()
+
+
 
 # colocar o site no ar
 
