@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisualizacaoBanco</title>
+</head>
+<body>
+
+    <h2>Banco de Dados</h2>
+    <table border="3">
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Valor do material</th>
+        </tr>
+        {% for item in Materiais %}
+        <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+        {% endfor %}
+    </table>
+
+    <form action="/AddMaterial" method="POST">
+        <input type="date" name="Data" placeholder = "AAAA-MM-DD" required>
+        <input type="text" name="Descricao" placeholder="Descrição" required>
+        <input type="text" name="VlMaterial" placeholder="Valor do Material" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+
+</body>
+</html>

@@ -1,12 +1,12 @@
 from flask import Flask, render_template
 from Senha import Confirmacao
-from Banco import criartabela, add, delete, get_data
+from BancoMaterial import CriarTabelaMaterial, AddMaterial, SelecionarTodosOsMateriais
 import webview
 
 app = Flask(__name__)
 
 #Criar tabela se ela não existir
-criartabela() 
+CriarTabelaMaterial()
 
 #Configurar janela do pyview
 windows = webview.create_window('Projeto Banco', app, width = 1900, height=900, resizable=True, confirm_close=False)
@@ -24,24 +24,25 @@ def pessoas():
 def usuarios(nome_usuario):
     return render_template("Usuarios.html", nome_usuario=nome_usuario)
 
-@app.route("/Banco")
-def Banco():
-    pessoas = get_data()
-    return render_template("Banco.html", pessoas=pessoas)
+@app.route("/VisualizacaoBanco")
+def VisualizacaoBanco():
+    Materiais = SelecionarTodosOsMateriais()
+    return render_template("VisualizacaoBanco.html", Materiais=Materiais)
+
+@app.route("/AddMateriais")
+def OOAddMateriais():
+    Materiais = SelecionarTodosOsMateriais()
+    return render_template("AddMateriais.html", Materiais=Materiais)
 
 #Acessando funções
-
-@app.route("/Add", methods=["POST"])
-def Adicionar():
-    return add()
-
-@app.route("/Delete", methods=["POST"])
-def Deletando():
-    return delete()
 
 @app.route("/Confirmacao", methods=["POST"])
 def confirmar_usuario():
     return Confirmacao()
+
+@app.route("/AddMaterial", methods=["POST"])
+def OOAddMaterial():
+    return AddMaterial()
 
 # colocar o site no ar
 

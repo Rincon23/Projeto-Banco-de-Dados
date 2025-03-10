@@ -19,7 +19,7 @@ def Confirmacao():
 
     if verificarlogin == True:
         print ("Login bem sucedido")
-        return redirect(url_for("Banco"))  # Redireciona para a página inicial
+        return redirect(url_for("VisualizacaoBanco"))  # Redireciona para a página inicial
            
     else:
         print ("Login mal sucedido")
